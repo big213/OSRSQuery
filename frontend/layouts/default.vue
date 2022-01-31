@@ -17,17 +17,6 @@
       </nuxt-link>
       <v-divider></v-divider>
       <v-list dense color="accent">
-        <v-list-item class="mb-2">
-          <v-btn
-            block
-            color="primary"
-            class="pa-2"
-            @click="openCreateSubmissionDialog()"
-          >
-            <v-icon left>mdi-plus</v-icon>
-            Submit Record
-          </v-btn>
-        </v-list-item>
         <v-list-item
           v-for="(item, i) in mainItems"
           :key="i"
@@ -320,8 +309,8 @@ export default {
         },
         {
           icon: 'mdi-account',
-          title: 'Characters',
-          to: generateCrudRecordInterfaceRoute('/public-characters', {
+          title: 'Prayers',
+          to: generateCrudRecordInterfaceRoute('/public-prayers', {
             search: '',
             filters: [],
             sort: {
@@ -350,50 +339,13 @@ export default {
         },
       ],
 
-      moderatorItems: [
-        {
-          icon: 'mdi-format-list-checkbox',
-          title: 'Review Queue',
-          to: generateCrudRecordInterfaceRoute('/submissions', {
-            search: '',
-            filters: [
-              {
-                field: 'status',
-                operator: 'in',
-                value: ['UNDER_REVIEW', 'SUBMITTED', 'INFORMATION_REQUESTED'],
-              },
-            ],
-            sort: {
-              field: 'createdAt',
-              desc: true,
-            },
-          }),
-        },
-        {
-          icon: 'mdi-checkbox-marked',
-          title: 'Done',
-          to: generateCrudRecordInterfaceRoute('/submissions', {
-            search: '',
-            filters: [
-              {
-                field: 'status',
-                operator: 'in',
-                value: ['APPROVED', 'REJECTED'],
-              },
-            ],
-            sort: {
-              field: 'updatedAt',
-              desc: true,
-            },
-          }),
-        },
-      ],
+      moderatorItems: [],
       accountItems: [
         { title: 'My Profile', to: '/my-profile', exact: false },
         { title: 'Settings', to: '/settings', exact: false },
       ],
       miniVariant: false,
-      title: 'OSRSRecords',
+      title: 'OSRSQuery',
     }
   },
 
@@ -456,13 +408,6 @@ export default {
     this.$root.$on('openCrudRecordDialog', (params) => {
       this.dialogs.crudRecord = params
     })
-
-    /*
-     ** Expecting url
-     */
-    this.$root.$on('setBackgroundImage', (params) => {
-      this.backgroundImage = params.url
-    })
   },
 
   methods: {
@@ -471,24 +416,7 @@ export default {
     },
     openLink,
 
-    openCreateSubmissionDialog() {
-      try {
-        this.$root.$emit('openEditRecordDialog', {
-          recordInfo: 'MySubmission',
-          mode: 'add',
-          selectedItem: {},
-        })
-      } catch (err) {
-        handleError(this, err)
-      }
-    },
-
-    handleItemAdded() {
-      /*       switch (this.editRecordDialogRecordInfo.typename) {
-        case 'workspace':
-          break;
-      } */
-    },
+    handleItemAdded() {},
 
     canSee(allowedRoles, allowedPermissions) {
       return (

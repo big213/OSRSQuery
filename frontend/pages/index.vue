@@ -9,9 +9,7 @@
         />
       </div>
       <v-card>
-        <v-card-title class="headline">
-          Welcome to OSRSRecords.com
-        </v-card-title>
+        <v-card-title class="headline"> Welcome to OSRSQuery.com </v-card-title>
         <v-card-text>
           <p>
             OSRSRecords.com is a website dedicated to tracking records in the
@@ -28,10 +26,6 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" @click="openCreateSubmissionDialog()">
-            <v-icon left> mdi-plus </v-icon>
-            Submit Record</v-btn
-          >
           <v-btn color="primary" nuxt to="/leaderboard">
             <v-icon left> mdi-podium </v-icon>
             Leaderboard</v-btn
@@ -46,8 +40,6 @@
 <script>
 import { mapGetters } from 'vuex'
 import ReleaseHistory from '~/components/common/releaseHistory.vue'
-import { handleError } from '~/services/base'
-import { getEvents } from '~/services/dropdown'
 
 export default {
   components: {
@@ -60,34 +52,7 @@ export default {
     }),
   },
 
-  mounted() {
-    // set a random image
-    getEvents(this).then((events) => {
-      const eventsWithBgImages = events.filter((event) => event.backgroundImage)
-
-      if (eventsWithBgImages.length < 1) return
-
-      this.$root.$emit('setBackgroundImage', {
-        url: eventsWithBgImages[
-          Math.floor(Math.random() * (eventsWithBgImages.length - 1))
-        ].backgroundImage,
-      })
-    })
-  },
-
-  methods: {
-    openCreateSubmissionDialog() {
-      try {
-        this.$root.$emit('openEditRecordDialog', {
-          recordInfo: 'MySubmission',
-          mode: 'add',
-          selectedItem: {},
-        })
-      } catch (err) {
-        handleError(this, err)
-      }
-    },
-  },
+  methods: {},
   head() {
     return {
       title: 'Home',
@@ -95,7 +60,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'OSRSRecords.com',
+          content: 'OSRSQuery.com',
         },
       ],
     }

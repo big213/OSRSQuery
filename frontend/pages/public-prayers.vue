@@ -4,7 +4,7 @@
 
 <script>
 import CrudRecordPage from '~/components/page/crudRecordPage.vue'
-import { PublicCharacter } from '~/models'
+import { PublicPrayer } from '~/models'
 
 export default {
   components: {
@@ -13,8 +13,8 @@ export default {
 
   data() {
     return {
-      recordInfo: PublicCharacter,
-      title: 'Public Characters',
+      recordInfo: PublicPrayer,
+      title: 'Public Prayer',
     }
   },
 }

@@ -1,14 +1,14 @@
 import type { RecordInfo } from '~/types'
 import TimeagoColumn from '~/components/table/timeagoColumn.vue'
-import FilesizeColumn from '~/components/table/filesizeColumn.vue'
-import FileColumn from '~/components/table/fileColumn.vue'
+import AvatarColumn from '~/components/table/avatarColumn.vue'
+import NameAvatarColumn from '~/components/table/nameAvatarColumn.vue'
 
-export const File = <RecordInfo<'file'>>{
-  typename: 'file',
-  pluralTypename: 'files',
-  name: 'File',
-  pluralName: 'Files',
-  icon: 'mdi-file',
+export const {{ capitalizedTypename }} = <RecordInfo<'{{ typename }}'>>{
+  typename: '{{ typename }}',
+  pluralTypename: '{{ typename }}s',
+  name: '{{ typename }}',
+  pluralName: '{{ typename }}s',
+  icon: 'mdi-folder-information',
   routeName: 'a-view',
   renderItem: (item) => item.name,
   fields: {
@@ -18,20 +18,19 @@ export const File = <RecordInfo<'file'>>{
     name: {
       text: 'Name',
     },
-    nameWithId: {
+    avatar: {
+      text: 'Avatar',
+      inputType: 'avatar',
+      component: AvatarColumn,
+    },
+    description: {
+      text: 'Description',
+      inputType: 'textarea',
+    },
+    nameWithAvatar: {
       text: 'Name',
-      fields: ['name', 'id'],
-      component: FileColumn,
-    },
-    size: {
-      text: 'Size',
-      component: FilesizeColumn,
-    },
-    location: {
-      text: 'Location',
-    },
-    contentType: {
-      text: 'Content Type',
+      fields: ['name', 'avatar'],
+      component: NameAvatarColumn,
     },
     createdAt: {
       text: 'Created At',
@@ -50,23 +49,10 @@ export const File = <RecordInfo<'file'>>{
         field: 'createdAt',
         desc: true,
       },
-      {
-        field: 'updatedAt',
-        desc: true,
-      },
     ],
     headerOptions: [
       {
-        field: 'nameWithId',
-      },
-      {
-        field: 'contentType',
-        width: '200px',
-      },
-      {
-        field: 'size',
-        width: '150px',
-        align: 'right',
+        field: 'nameWithAvatar',
       },
       {
         field: 'createdAt',
@@ -80,13 +66,16 @@ export const File = <RecordInfo<'file'>>{
     downloadOptions: {},
   },
   addOptions: {
-    fields: ['name', 'location'],
+    fields: ['avatar', 'name', 'description'],
+  },
+  importOptions: {
+    fields: ['avatar', 'name', 'description'],
   },
   editOptions: {
-    fields: ['name'],
+    fields: ['avatar', 'name', 'description'],
   },
   viewOptions: {
-    fields: ['name', 'size', 'contentType', 'location'],
+    fields: ['avatar', 'name', 'description'],
   },
   enterOptions: {},
   deleteOptions: {},

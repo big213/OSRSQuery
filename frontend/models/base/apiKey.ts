@@ -1,6 +1,6 @@
 import type { RecordInfo } from '~/types'
-import TimeagoColumn from '~/components/table/common/timeagoColumn.vue'
-import CopyableColumn from '~/components/table/common/copyableColumn.vue'
+import TimeagoColumn from '~/components/table/timeagoColumn.vue'
+import CopyableColumn from '~/components/table/copyableColumn.vue'
 import { generateJoinableField } from '~/services/recordInfo'
 
 export const ApiKey = <RecordInfo<'apiKey'>>{

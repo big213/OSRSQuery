@@ -1,19 +1,8 @@
 {
   "projects": {
-    "default": "osrs-records",
-    "staging": "osrsquery"
+    "default": "osrsquery"
   },
   "targets": {
-    "osrs-records": {
-      "hosting": {
-        "osrs-records-cdn": [
-          "osrs-records-cdn"
-        ],
-        "osrs-records-api": [
-          "osrs-records-api"
-        ]
-      }
-    },
     "osrsquery": {
       "hosting": {
         "osrsquery-api": [

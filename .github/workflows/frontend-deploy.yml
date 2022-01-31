@@ -24,8 +24,8 @@ jobs:
         working-directory: ./frontend
         run: npm run generate
         env:
-          API_URL: https://api.osrsrecords.com
-          IMAGE_SERVING_URL: https://cdn.osrsrecords.com
+          API_URL: https://api.osrsquery.com
+          IMAGE_SERVING_URL: https://cdn.osrsquery.com
           VER: ${{ github.ref }}
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
@@ -34,4 +34,3 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           PROJECT_PATH: ./frontend
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}

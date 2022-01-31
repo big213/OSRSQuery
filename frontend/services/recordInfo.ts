@@ -1,4 +1,4 @@
-import RecordColumn from '~/components/table/common/recordColumn.vue'
+import RecordColumn from '~/components/table/recordColumn.vue'
 import { InputType } from '~/types'
 
 export function generatePreviewableRecordField({
